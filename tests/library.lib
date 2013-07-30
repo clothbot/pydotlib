@@ -1,0 +1,8 @@
+library (library_tests){
+/* Ignore comment */
+/* ignore
+	this
+		comment
+			too */
+}
+

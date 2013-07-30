@@ -1,0 +1,91 @@
+library ( hierarchy_test ) {
+
+	cell( cell1 ) {
+		pg_pin(VDD){
+			voltage_name : VDD;
+			pg_type : primary_power;
+		}
+		pg_pin(VSS){
+			voltage_name : VSS;
+			pg_type : primary_ground;
+		}
+		pin (i1) {
+			direction : input;
+			capacitance : 0.005;
+			max_transition : 0.500;
+			related_ground_pin : "VSS" ;
+			related_power_pin : "VDD";
+		}
+		pin (o1) {
+			direction : output;
+			capacitance : 0.001;
+			max_transition : 0.500;
+			related_ground_pin : "VSS";
+			related_power_pin : "VDD";
+			max_capacitance : 0.0538;
+			timing() {
+				timing_type : rising_edge;
+				timing_sense : non_unate ;
+				rising_transition (lut_timing_1) {
+					values(\
+						"0.01,0.02,0.03,0.06,0.10,0.14,0.20,0.25", \
+						"0.01,0.02,0.03,0.06,0.10,0.14,0.20,0.25", \
+						"0.01,0.02,0.03,0.06,0.10,0.14,0.20,0.25", \
+						"0.01,0.02,0.03,0.06,0.10,0.14,0.20,0.25", \
+						"0.01,0.02,0.03,0.06,0.10,0.14,0.20,0.25", \
+						"0.01,0.02,0.03,0.06,0.10,0.14,0.20,0.25", \
+						"0.01,0.02,0.03,0.06,0.10,0.14,0.20,0.25", \
+						"0.01,0.02,0.03,0.06,0.10,0.14,0.20,0.25"  \
+					);
+				}
+			}
+		}
+		type(bus0){
+			base_type : array;
+			data_type : bit;
+			bit_width : 5;
+			bit_from : 4;
+			bit_to : 0;
+			downto : true;
+		}
+		bus(inbus1) {
+			bus_type : bus0;
+			pin(inbus1[4]) {
+				direction : input;
+				capacitance : 0.003;
+				max_transition : 0.5;
+				related_ground_pin : "VSS";
+				related_power_pin : "VDD";
+			}
+			pin(inbus1[3]) {
+				direction : input;
+				capacitance : 0.003;
+				max_transition : 0.5;
+				related_ground_pin : "VSS";
+				related_power_pin : "VDD";
+			}
+			pin(inbus1[2]) {
+				direction : input;
+				capacitance : 0.003;
+				max_transition : 0.5;
+				related_ground_pin : "VSS";
+				related_power_pin : "VDD";
+			}
+			pin(inbus1[1]) {
+				direction : input;
+				capacitance : 0.003;
+				max_transition : 0.5;
+				related_ground_pin : "VSS";
+				related_power_pin : "VDD";
+			}
+			pin(inbus1[0]) {
+				direction : input;
+				capacitance : 0.003;
+				max_transition : 0.5;
+				related_ground_pin : "VSS";
+				related_power_pin : "VDD";
+			}
+		}
+	}
+}
+
