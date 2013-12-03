@@ -25,6 +25,7 @@ reserved = {
     'clear_preset_var1' : 'CLEAR_PRESET_VAR1',
     'clear_preset_var2' : 'CLEAR_PRESET_VAR2',
     'table' : 'TABLE',
+    'values' : 'VALUES',
 }
 
 tokens = [
@@ -180,6 +181,19 @@ def create_parser():
 		'''named_attribute : DIRECTION COLON IO_DIR
 						   | DIRECTION COLON IO_DIR SEMI'''
 		t[0]={t[1] : t[3]}
+
+	def p_named_attribute_values(t):
+		'''named_attribute : VALUES LPAR arg args RPAR SEMI'''
+		attr={}
+		attr['values']=[]
+		if t[3] != None :
+			attr['values'].append(t[3].split(','))
+			for line in t[4] :
+				attr['values'].append(line.split(','))
+			# if t[4]!=None and type(t[4])==type([]) :
+			#	attr['values'].extend(t[4])
+		t[0]=attr
+
 
 	def p_arg(t):
 		'''arg : argl
